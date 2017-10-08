@@ -1,5 +1,5 @@
 # MusicCenter
-For the convenience of listening to music
+Web-application for the convenience of listening to music
 
 ## Used technologies
 1. **ASP .NET Core** - a web application framework developed by Microsoft.
