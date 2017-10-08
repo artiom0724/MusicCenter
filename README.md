@@ -7,5 +7,5 @@ For the convenience of listening to music
 3. **ASP .NET Identity** - authorization and authentication system.
 4. **jQuery** - a cross-platform JavaScript library designed to simplify the client-side scripting of HTML.
 ## Used services
-1. **Last.fm/api** - image and music date.
+1. **Last.fm/api** - image and music data.
 2. **Microsoft Azure** -  a cloud computing service for building, testing, deploying, and managing applications.
