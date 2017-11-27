@@ -1,0 +1,55 @@
+﻿@using MusicCenter.Models
+@model List<Track>
+@{
+    ViewBag.Title = "Tracks";
+}
+@if (Model != null && Model.Count != 0)
+{    
+    <div class="row" style="margin-top:5px; margin-left:12%">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-5" style="min-height:80px">
+                <div class="media">
+                    <article class="audio">
+                        <header>
+                            <div class="media-left">
+                                <a href="#">
+                                    @if (item.ImageLarge != null)
+                                    {
+                                        <img src="@item.ImageLarge" height="50" width="50" id="runMusic" />
+                                    }
+                                    else
+                                    {
+                                        <img src="https://icon-icons.com/icons2/936/PNG/512/play-sign_icon-icons.com_73455.png" height="50" width="50">
+                                    }
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">@item.Artist - @item.Name</h4>
+                                @if (item.Listeners != 0)
+                                {
+                                    <h5>Listeners: @item.Listeners</h5>
+                                }
+                                else
+                                {
+                                    <h5>Duration: @item.Duration</h5>
+                                }
+                            </div>
+                        </header>
+                        @if (item.Url != null)
+                        {
+                            <audio controls style="width:45%">
+                                <source src="@Url.Action("MyAudio","Home",new { url = item.Url })" type="audio/mp3" />
+                                <p>Your browser does not support HTML 5 audio element</p>
+                            </audio>
+                        }
+                    </article>
+                </div>
+            </div>
+        }
+</div>
+}
+else
+{
+    <h1  id="message"> No tracks at site...</h1>
+}

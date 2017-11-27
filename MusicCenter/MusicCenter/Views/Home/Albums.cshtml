@@ -1,0 +1,18 @@
+﻿@using MusicCenter.Models
+@model List<Album>
+@{
+    ViewBag.Title = "Albums";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/Style.css" />
+
+<div class="row">
+
+    <div class="col-md-12">
+        <h3>Online:</h3>
+        <div id="scrolList">
+            @Html.Partial("_Albums", Model)
+        </div>
+    </div>
+</div>
+<img id="loading" src="http://www.playcast.ru/uploads/2016/02/23/17479109.gif" style="width:auto;margin-left:40%; margin-right:40%" height="80">
+<script src="~/Scripts/ScrollingAlbums.js"></script>

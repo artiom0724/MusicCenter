@@ -1,0 +1,14 @@
+﻿@using MusicCenter.Models
+@model SearchResult
+@{
+    ViewBag.Title ="Search";
+}
+<h3 id="myreqest">@Model.SearchReqest</h3>
+<div class="row">
+    <div class="col-md-12">
+        <h1>Online:</h1>
+        <div id="scrolList">
+            @Html.Partial("_SearchResult", Model)
+        </div>
+    </div>
+</div>

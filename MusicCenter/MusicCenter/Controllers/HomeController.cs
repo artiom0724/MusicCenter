@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MusicCenter.Models;
 
@@ -10,10 +6,24 @@ namespace MusicCenter.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public OnlineWorker onlineWorker;
+
+        public HomeController()
         {
-            return View();
+            onlineWorker = new OnlineWorker();
         }
+
+        public ActionResult Index(int? author)
+        {
+            ViewBag.reqest = "Search";
+            int numPage = author ?? 1;
+            if (Request.IsAjaxRequest() && numPage != 1)
+            {
+                return PartialView("_Items", onlineWorker.TopAuthorsForView(numPage));
+            }
+            return View(onlineWorker.TopAuthorsForView(numPage));
+        }
+
 
         public IActionResult About()
         {
