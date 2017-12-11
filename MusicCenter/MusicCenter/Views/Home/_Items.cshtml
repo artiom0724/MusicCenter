@@ -1,28 +1,22 @@
-﻿@using MusicCenter.Models
-@model List<Artist>
-
-<link rel="stylesheet" type="text/css" href="~/Content/Style.css" />
+﻿@using IF.Lastfm.Core.Objects
+@model List<LastArtist>
 @if (Model != null && Model.Count != 0)
 {
 <div class="row">
     @foreach (var item in Model)
     {
         <a href="/Home/Albums/@item.Name">
-            <div class="col-md-1">
+            <div class="col-md-3">
                 <div class="image">
-                    @if (item.ImageLarge != "")
+                    @if (item.MainImage.Large != null) 
                     {
-                    <img src="@item.ImageLarge" alt="" width="300" height="300" />
+                    <img class="image" src="@item.MainImage.Large" alt=""/>
                     }
                     else
                     {
                         <img src="http://www.spartanwebsites.com/meadowcitymusicfest/wp-content/uploads/2016/05/meadow-city-music-festival-icon-1-300x300.png"width="300" height="300" />
                     }
-                    <h2>@item.Name<br /></h2>
-                    @if (item.Listeners != 0)
-                    {
-                        <h2 style="top:80%">Listeners: @item.Listeners</h2>
-                    }
+                    <p class="textOn">@item.Name<br />Listeners: @item.PlayCount</p>
                 </div>
             </div>
         </a>
@@ -33,3 +27,25 @@ else
 {
     <h1 id="message"> No artists at site...</h1>
 }
+<style type="text/css">
+    .image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        max-width: 300px;
+        margin:3px;
+    }
+
+    .textOn {
+        margin: 3px;
+        position: absolute;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        top: 70%;
+        left: 0;
+        width: 100%;
+        color: white;
+        background-color: rgba(0,0,0,.3);
+    }
+</style>

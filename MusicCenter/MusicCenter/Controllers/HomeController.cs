@@ -1,29 +1,54 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using LastFM;
+using System.Collections.Generic;
 using MusicCenter.Models;
+using System.Threading.Tasks;
+using System.Xml;
+using System.Net;
+using System.Xml.Linq;
+using HtmlAgilityPack;
+using System;
+using MusicCenter.Models.ManageViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace MusicCenter.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         public OnlineWorker onlineWorker;
-
-        public HomeController()
+        [TempData]
+        public string StatusMessage { get; set; }
+        public HomeController(UserManager<ApplicationUser> userManager,
+          SignInManager<ApplicationUser> signInManager)
         {
+            _userManager = userManager;
+            _signInManager = signInManager;
             onlineWorker = new OnlineWorker();
         }
 
-        public ActionResult Index(int? author)
+        public async Task<IActionResult> Index(int? numPage)
         {
-            ViewBag.reqest = "Search";
-            int numPage = author ?? 1;
-            if (Request.IsAjaxRequest() && numPage != 1)
-            {
-                return PartialView("_Items", onlineWorker.TopAuthorsForView(numPage));
-            }
-            return View(onlineWorker.TopAuthorsForView(numPage));
+            int tempPage = numPage ?? 1;
+            var searchresult = new SearchResult() { SearchReqest = ""};
+            searchresult.Artists.AddRange(await onlineWorker.TopArtistsForViewAsync(tempPage));
+            searchresult.Albums.AddRange(await onlineWorker.TopAlbumsForViewAsync(tempPage));
+            searchresult.Tracks.AddRange(await onlineWorker.TopTracksForViewAsync(tempPage));
+            return View(searchresult);
         }
 
+        [HttpPost]
+        public string GetDiv(string text)
+        {
+            var webClient = new WebClient();
+            string returning;
+            using (webClient)
+            {
+                return returning = webClient.DownloadString(text);
+            }
+        }
 
         public IActionResult About()
         {

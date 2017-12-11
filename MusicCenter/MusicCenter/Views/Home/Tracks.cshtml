@@ -1,5 +1,5 @@
-﻿@using MusicCenter.Models
-@model List<Track>
+﻿@using IF.Lastfm.Core.Objects
+@model List<LastTrack>
 @{
     ViewBag.Title = "Tracks";
 }
@@ -13,10 +13,10 @@
                     <article class="audio">
                         <header>
                             <div class="media-left">
-                                <a href="#">
-                                    @if (item.ImageLarge != null)
+                                <a href="#" OnClick="clickTrack('@item.Url.AbsoluteUri')">
+                                    @if (item.Images.Large != null)
                                     {
-                                        <img src="@item.ImageLarge" height="50" width="50" id="runMusic" />
+                                        <img src="@item.Images.Medium" id="runMusic" />
                                     }
                                     else
                                     {
@@ -25,24 +25,10 @@
                                 </a>
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading">@item.Artist - @item.Name</h4>
-                                @if (item.Listeners != 0)
-                                {
-                                    <h5>Listeners: @item.Listeners</h5>
-                                }
-                                else
-                                {
-                                    <h5>Duration: @item.Duration</h5>
-                                }
+                                <h4 class="media-heading">@item.ArtistName - @item.Name </h4>
+                                <h5>PlayCount: @item.PlayCount</h5>
                             </div>
                         </header>
-                        @if (item.Url != null)
-                        {
-                            <audio controls style="width:45%">
-                                <source src="@Url.Action("MyAudio","Home",new { url = item.Url })" type="audio/mp3" />
-                                <p>Your browser does not support HTML 5 audio element</p>
-                            </audio>
-                        }
                     </article>
                 </div>
             </div>

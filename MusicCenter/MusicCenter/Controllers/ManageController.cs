@@ -46,11 +46,12 @@ namespace MusicCenter.Controllers
         public string StatusMessage { get; set; }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<PartialViewResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
+                return null;
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
@@ -63,7 +64,7 @@ namespace MusicCenter.Controllers
                 StatusMessage = StatusMessage
             };
 
-            return View(model);
+            return PartialView(model);
         }
 
         [HttpPost]

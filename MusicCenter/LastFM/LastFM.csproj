@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MusicCenter\MusicCenter.csproj" />
+    <PackageReference Include="Inflatable.Lastfm" Version="1.0.1.307" />
   </ItemGroup>
 
 </Project>

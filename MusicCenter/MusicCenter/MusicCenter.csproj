@@ -7,9 +7,22 @@
 
 
   <ItemGroup>
+    <PackageReference Include="AspNet.Security.OAuth.VK" Version="0.0.1" />
+    <PackageReference Include="bootstrap" Version="3.3.7" />
+    <PackageReference Include="Brik.Security.VkontakteMiddleware" Version="1.0.2" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.6.7" />
+    <PackageReference Include="jQuery" Version="3.2.1" />
+    <PackageReference Include="jQuery.UI.Combined" Version="1.12.1" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.3" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.3" />
+    <PackageReference Include="Microsoft.Owin" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Owin.Security" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Owin.Security.Facebook" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Owin.Security.Google" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Owin.Security.OAuth" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Owin.Security.Twitter" Version="3.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" PrivateAssets="All" />
   </ItemGroup>
 
@@ -17,6 +30,14 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LastFM\LastFM.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Content\" />
   </ItemGroup>
 
 </Project>

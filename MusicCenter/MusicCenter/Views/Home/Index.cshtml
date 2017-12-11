@@ -1,18 +1,16 @@
 ﻿@using MusicCenter.Models
-@model List<Artist>
+@model SearchResult
 @{
-    ViewBag.Title = "Artists";
+    ViewBag.Title = "Home";
 }
-
 <div class="row">
     <div class="col-md-12">
         <div id="scrolList">
-            @Html.Partial("_Items", Model)
+            @Html.Partial("_SearchResult", Model)
         </div>
     </div>
 </div>   
-@if (Model != null || Model.Count() > 20)
-{
-    <img id="loading" src="http://www.playcast.ru/uploads/2016/02/23/17479109.gif" style="width:auto;margin-left:40%; margin-right:40%" height="80">
-}
-<script src="~/Scripts/ScrollingArtists.js"></script>
+<audio>
+    <source src="http://storage.mp3cc.com/download/61320507/bXZmZVh6U2lHVXdYQ2VmektTbHJiT1labW5jOHQ4ZnpoQTdHQTJzSHVGZHNDVjV5NFU0ZlZMMjFTVlg1NkRaZG9URGtEUitZK3lIYkt1ejlZV2FNQmR5RjA0Z3N0cHVCdmlkUzNRWXVjeVI2UVo2RGZGYTJ0WExjVUVoY09aOU8/alekseev-chuvstvuyu-dushoj_(mp3CC.com).mp3">
+</audio>
+<div id="forPlayer"></div>

@@ -1,35 +1,48 @@
-﻿@using MusicCenter.Models
-@model List<Album>
+﻿@using IF.Lastfm.Core.Objects
+@model List<LastAlbum>
+
 @if (Model != null && Model.Count != 0 )
 {
 <div class="row">
       @foreach (var item in Model)
         {
-            <a href="/Home/Albums/@item.ArtistAlbum/Tracks/@item.Name">
-                <div class="col-md-2">
-                    <div class="image">
-                        @if (item.ImageLarge != "")
+            <a href="/Home/Albums/@item.ArtistName/Tracks/@item.Name">
+                <div class="col-md-3">
+                    <div class="image" style="position:relative">
+                        @if (item.Images.Large != null)
                         {
-                            <img src="@item.ImageLarge" alt="" width="300" height="300" />
+                            <img class="image" src="@item.Images.Large" alt=""/>
                         }
                         else
                         {
-                            <img src="http://pixelbrush.ru/uploads/posts/2010-06/1277568875_vinil.jpg" alt="" width="300" height="300" />
+                            <img src="http://pixelbrush.ru/uploads/posts/2010-06/1277568875_vinil.jpg" alt=""/>
                         }
-                        
-                        <h2>@item.Name<br /></h2>
-                        @if (item.Playcount != 0)
-                        {
-                            <h2 style="top:80%">Playcount: @item.Playcount</h2>
-                        }
+                        <p class="textOn">@item.Name<br />Playcount: @item.PlayCount</p>
                     </div>
                 </div>
             </a>
         }
 </div>
-
 }
 else
 {
     <h1 id="message"> No albums at site...</h1>
 }
+<style type="text/css">
+    .image {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .textOn {
+        position: absolute;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        top: 70%;
+        left: 0;
+        width: inherit;
+        color: white;
+        background-color: rgba(0,0,0,.3);
+    }
+</style>
